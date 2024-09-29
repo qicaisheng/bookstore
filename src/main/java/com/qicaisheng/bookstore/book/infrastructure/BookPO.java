@@ -1,4 +1,4 @@
-package com.qicaisheng.bookstore.book;
+package com.qicaisheng.bookstore.book.infrastructure;
 
 import com.qicaisheng.bookstore.book.domain.BookCategory;
 import com.qicaisheng.bookstore.book.domain.Currency;

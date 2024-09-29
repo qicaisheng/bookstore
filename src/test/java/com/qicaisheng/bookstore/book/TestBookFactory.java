@@ -4,6 +4,7 @@ import com.qicaisheng.bookstore.book.domain.Book;
 import com.qicaisheng.bookstore.book.domain.BookCategory;
 import com.qicaisheng.bookstore.book.domain.Currency;
 import com.qicaisheng.bookstore.book.domain.Price;
+import com.qicaisheng.bookstore.book.infrastructure.BookPO;
 
 import java.math.BigDecimal;
 
