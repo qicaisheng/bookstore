@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -70,6 +71,17 @@ class ShoppingCartControllerTest {
         mockMvc.perform(post("/users/{userId}/shopping-cart", userId)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"shoppingBooks\":[{\"bookId\":\"book1\",\"number\":3},{\"bookId\":\"book2\",\"number\":4}]}"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.userId").value(userId))
+                .andExpect(jsonPath("$.books.length()").value(2))
+                .andExpect(jsonPath("$.books[0].book.id").value("book1"))
+                .andExpect(jsonPath("$.books[0].book.title").value("Book Title"))
+                .andExpect(jsonPath("$.books[0].number").value(3))
+                .andExpect(jsonPath("$.books[1].book.id").value("book2"))
+                .andExpect(jsonPath("$.books[1].book.title").value("Book Title"))
+                .andExpect(jsonPath("$.books[1].number").value(4));
+
+        mockMvc.perform(get("/users/{userId}/shopping-cart", userId))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.userId").value(userId))
                 .andExpect(jsonPath("$.books.length()").value(2))

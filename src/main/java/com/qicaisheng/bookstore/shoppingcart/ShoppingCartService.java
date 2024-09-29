@@ -28,4 +28,8 @@ public class ShoppingCartService {
         shoppingCart.setBooks(shoppingBooks);
         return shoppingCartRepository.save(shoppingCart);
     }
+
+    public ShoppingCart findByUserId(String userId) {
+        return shoppingCartRepository.findByUserId(userId);
+    }
 }

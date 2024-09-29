@@ -18,6 +18,7 @@ public class H2ShoppingCartRepositoryImpl implements ShoppingCartRepository {
 
     @Override
     public ShoppingCart save(ShoppingCart shoppingCart) {
+        shoppingBookJPARepository.deleteAll();
         List<ShoppingBookPO> shoppingBookPOs = shoppingCart.getBooks().stream()
                 .map(shoppingBook -> {
                     ShoppingBookPO shoppingBookPO = new ShoppingBookPO();
