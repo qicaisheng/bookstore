@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 
 @Getter
 @Setter
-@Entity
+@Entity(name = "book")
 public class BookPO {
     @Id
     private String id;
