@@ -20,6 +20,18 @@ public class TestBookFactory {
         return book;
     }
 
+    public static Book buildBook(String id) {
+        Book book = new Book();
+        book.setId(id);
+        book.setAuthor("Author");
+        book.setCategory(BookCategory.Business);
+        book.setTitle("Book Title");
+        book.setPrice(new Price(new BigDecimal("99.99"), Currency.CNY));
+
+        return book;
+    }
+
+
     public static BookPO getBookPO() {
         BookPO bookPO = new BookPO();
         bookPO.setId("1");
