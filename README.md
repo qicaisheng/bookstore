@@ -37,7 +37,7 @@ This is a RESTful API for managing books, shopping carts and checkout in a books
     ```
 
 5. **Access the API Documentation:** Open your web browser and navigate to http://localhost:8080/swagger-ui/index.html to explore the API endpoints.
-![swagger.png](src/main/java/com/qicaisheng/bookstore/swagger.png)
+![swagger.png](swagger.png)
 ## How to test
 To execute the tests, run the following command in the root directory of the project:
    ```bash
