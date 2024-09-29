@@ -1,5 +1,8 @@
 package com.qicaisheng.bookstore.book;
 
+import com.qicaisheng.bookstore.book.infrastructure.BookJPARepository;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -15,6 +18,20 @@ public class BookControllerTests {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @Autowired
+    private BookJPARepository bookJPARepository;
+
+    @BeforeEach
+    void setUp() {
+        bookJPARepository.deleteAll();
+    }
+
+    @AfterEach
+    void tearDown() {
+        bookJPARepository.deleteAll();
+    }
+
 
     @Test
     void shouldCreateAndList() throws Exception {

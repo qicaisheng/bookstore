@@ -2,7 +2,10 @@ package com.qicaisheng.bookstore.book;
 
 import com.qicaisheng.bookstore.book.domain.Book;
 import com.qicaisheng.bookstore.book.domain.BookRepository;
+import com.qicaisheng.bookstore.book.infrastructure.BookJPARepository;
 import com.qicaisheng.bookstore.common.PageDTO;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,6 +19,19 @@ class BookRepositoryTest {
 
     @Autowired
     private BookRepository bookRepository;
+
+    @Autowired
+    private BookJPARepository bookJPARepository;
+
+    @BeforeEach
+    void setUp() {
+        bookJPARepository.deleteAll();
+    }
+
+    @AfterEach
+    void tearDown() {
+        bookJPARepository.deleteAll();
+    }
 
     @Test
     void shouldSaveAndList() {
