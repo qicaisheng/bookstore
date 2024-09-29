@@ -68,7 +68,9 @@ class ShoppingCartControllerTest {
                 .andExpect(jsonPath("$.books[0].number").value(2))
                 .andExpect(jsonPath("$.books[1].book.id").value("book2"))
                 .andExpect(jsonPath("$.books[1].book.title").value("Book Title"))
-                .andExpect(jsonPath("$.books[1].number").value(3));
+                .andExpect(jsonPath("$.books[1].number").value(3))
+                .andExpect(jsonPath("$.totalPrice.value").value(499.95))
+                .andExpect(jsonPath("$.totalPrice.currency").value("CNY"));
 
         mockMvc.perform(post("/users/{userId}/shopping-cart", userId)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -81,7 +83,9 @@ class ShoppingCartControllerTest {
                 .andExpect(jsonPath("$.books[0].number").value(3))
                 .andExpect(jsonPath("$.books[1].book.id").value("book2"))
                 .andExpect(jsonPath("$.books[1].book.title").value("Book Title"))
-                .andExpect(jsonPath("$.books[1].number").value(4));
+                .andExpect(jsonPath("$.books[1].number").value(4))
+                .andExpect(jsonPath("$.totalPrice.value").value(699.93))
+                .andExpect(jsonPath("$.totalPrice.currency").value("CNY"));
 
         mockMvc.perform(get("/users/{userId}/shopping-cart", userId))
                 .andExpect(status().isOk())
@@ -92,6 +96,8 @@ class ShoppingCartControllerTest {
                 .andExpect(jsonPath("$.books[0].number").value(3))
                 .andExpect(jsonPath("$.books[1].book.id").value("book2"))
                 .andExpect(jsonPath("$.books[1].book.title").value("Book Title"))
-                .andExpect(jsonPath("$.books[1].number").value(4));
+                .andExpect(jsonPath("$.books[1].number").value(4))
+                .andExpect(jsonPath("$.totalPrice.value").value(699.93))
+                .andExpect(jsonPath("$.totalPrice.currency").value("CNY"));
     }
 }
