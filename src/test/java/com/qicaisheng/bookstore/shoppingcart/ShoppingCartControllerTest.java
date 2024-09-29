@@ -51,7 +51,7 @@ class ShoppingCartControllerTest {
     }
 
     @Test
-    void shouldCreateShoppingCart() throws Exception {
+    void shouldSaveShoppingCart() throws Exception {
         String userId = "user1";
 
         mockMvc.perform(post("/users/{userId}/shopping-cart", userId)
@@ -66,5 +66,18 @@ class ShoppingCartControllerTest {
                 .andExpect(jsonPath("$.books[1].book.id").value("book2"))
                 .andExpect(jsonPath("$.books[1].book.title").value("Book Title"))
                 .andExpect(jsonPath("$.books[1].number").value(3));
+
+        mockMvc.perform(post("/users/{userId}/shopping-cart", userId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"shoppingBooks\":[{\"bookId\":\"book1\",\"number\":3},{\"bookId\":\"book2\",\"number\":4}]}"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.userId").value(userId))
+                .andExpect(jsonPath("$.books.length()").value(2))
+                .andExpect(jsonPath("$.books[0].book.id").value("book1"))
+                .andExpect(jsonPath("$.books[0].book.title").value("Book Title"))
+                .andExpect(jsonPath("$.books[0].number").value(3))
+                .andExpect(jsonPath("$.books[1].book.id").value("book2"))
+                .andExpect(jsonPath("$.books[1].book.title").value("Book Title"))
+                .andExpect(jsonPath("$.books[1].number").value(4));
     }
 }
