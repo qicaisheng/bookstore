@@ -6,4 +6,6 @@ public interface BookRepository {
     Book save(Book book);
 
     PageDTO<Book> list(int page, int size);
+
+    Book update(Book book);
 }

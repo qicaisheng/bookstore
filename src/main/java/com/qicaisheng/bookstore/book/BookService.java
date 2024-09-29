@@ -2,7 +2,6 @@ package com.qicaisheng.bookstore.book;
 
 import com.qicaisheng.bookstore.book.domain.Book;
 import com.qicaisheng.bookstore.book.domain.BookRepository;
-import com.qicaisheng.bookstore.book.infrastructure.BookCreateRequestDTO;
 import com.qicaisheng.bookstore.common.PageDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,6 +23,16 @@ public class BookService {
         book.setPrice(bookCreateRequestDTO.getPrice());
 
         return bookRepository.save(book);
+    }
+
+    public Book update(String id, BookUpdateRequestDTO bookUpdateRequestDTO) {
+        Book book = new Book();
+        book.setId(id);
+        book.setTitle(bookUpdateRequestDTO.getTitle());
+        book.setCategory(bookUpdateRequestDTO.getCategory());
+        book.setAuthor(bookUpdateRequestDTO.getAuthor());
+        book.setPrice(bookUpdateRequestDTO.getPrice());
+        return bookRepository.update(book);
     }
 
     public PageDTO<Book> list(int page, int size) {

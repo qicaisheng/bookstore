@@ -31,4 +31,11 @@ public class H2BookRepositoryImpl implements BookRepository {
         return new PageDTO<>(content, bookPage.getNumber(), bookPage.getSize(),
                 bookPage.getTotalElements(), bookPage.getTotalPages());
     }
+
+    @Override
+    public Book update(Book book) {
+        BookPO bookPO = BookConverter.toPO(book);
+        bookJPARepository.save(bookPO);
+        return book;
+    }
 }

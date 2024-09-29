@@ -1,12 +1,9 @@
 package com.qicaisheng.bookstore.book;
 
 import com.qicaisheng.bookstore.book.domain.Book;
-import com.qicaisheng.bookstore.book.infrastructure.BookCreateRequestDTO;
 import com.qicaisheng.bookstore.common.PageDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/books/")
@@ -24,5 +21,10 @@ public class BookController {
     @PostMapping
     public Book create(@RequestBody BookCreateRequestDTO bookCreateRequestDTO) {
         return bookService.save(bookCreateRequestDTO);
+    }
+
+    @PutMapping("/{id}")
+    public Book update(@PathVariable String id, @RequestBody BookUpdateRequestDTO book) {
+        return bookService.update(id, book);
     }
 }
