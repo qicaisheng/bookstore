@@ -13,9 +13,9 @@ public class ShoppingCartController {
     private final ShoppingCartService shoppingCartService;
 
     @PostMapping("/users/{userId}/shopping-cart")
-    public ShoppingCart create(@PathVariable String userId,
+    public ShoppingCart save(@PathVariable String userId,
                                @RequestBody ShoppingCartRequestDTO shoppingCartRequestDTO) {
         shoppingCartRequestDTO.setUserId(userId);
-        return shoppingCartService.create(shoppingCartRequestDTO);
+        return shoppingCartService.save(shoppingCartRequestDTO);
     }
 }
