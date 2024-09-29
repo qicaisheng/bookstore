@@ -1,12 +1,11 @@
 package com.qicaisheng.bookstore;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/books/")
@@ -22,5 +21,16 @@ public class BookController {
         book1.setCategory(BookCategory.Business);
         book1.setPrice(new Price(new BigDecimal("100.00"), Currency.CNY));
         return List.of(book1);
+    }
+
+    @PostMapping
+    public Book create(@RequestBody BookCreateRequestDTO bookCreateRequestDTO) {
+        Book book = new Book();
+        book.setId(UUID.randomUUID().toString());
+        book.setTitle(bookCreateRequestDTO.getTitle());
+        book.setCategory(bookCreateRequestDTO.getCategory());
+        book.setAuthor(bookCreateRequestDTO.getAuthor());
+        book.setPrice(bookCreateRequestDTO.getPrice());
+        return book;
     }
 }
