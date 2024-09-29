@@ -1,5 +1,8 @@
 package com.qicaisheng.bookstore.shoppingcart;
 
+import com.qicaisheng.bookstore.book.domain.Book;
+import com.qicaisheng.bookstore.book.infrastructure.BookConverter;
+import com.qicaisheng.bookstore.book.infrastructure.BookJPARepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +14,7 @@ import java.util.stream.Collectors;
 public class H2ShoppingCartRepositoryImpl implements ShoppingCartRepository {
 
     private final ShoppingBookJPARepository shoppingBookJPARepository;
+    private final BookJPARepository bookJPARepository;
 
     @Override
     public ShoppingCart save(ShoppingCart shoppingCart) {
@@ -30,6 +34,27 @@ public class H2ShoppingCartRepositoryImpl implements ShoppingCartRepository {
 
     @Override
     public ShoppingCart findByUserId(String userId) {
-        return null;
-    }
+        List<ShoppingBookPO> shoppingBooks = shoppingBookJPARepository.findByUserId(userId);
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.setUserId(userId);
+
+        List<String> bookIds = shoppingBooks.stream()
+                .map(ShoppingBookPO::getBookId)
+                .collect(Collectors.toList());
+
+        List<Book> books = bookJPARepository.findAllById(bookIds)
+                .stream()
+                .map(BookConverter::toEntity)
+                .toList();
+
+        List<ShoppingBook> shoppingBookList = books.stream()
+                .map(book -> new ShoppingBook(book, shoppingBooks.stream()
+                        .filter(shoppingBookPO -> shoppingBookPO.getBookId().equals(book.getId()))
+                        .findFirst()
+                        .orElseThrow(() -> new RuntimeException("Book not found in shopping cart"))
+                        .getNumber()))
+                .collect(Collectors.toList());
+
+        shoppingCart.setBooks(shoppingBookList);
+        return shoppingCart;    }
 }
