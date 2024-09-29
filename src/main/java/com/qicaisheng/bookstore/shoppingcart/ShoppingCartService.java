@@ -16,16 +16,29 @@ public class ShoppingCartService {
     private final ShoppingCartRepository shoppingCartRepository;
     private final BookRepository bookRepository;
 
-    public ShoppingCart create(ShoppingCartCreateRequestDTO shoppingCartCreateRequestDTO) {
+    public ShoppingCart create(ShoppingCartRequestDTO shoppingCartRequestDTO) {
         ShoppingCart shoppingCart = new ShoppingCart();
-        Map<String, Integer> bookIdNumberMap = shoppingCartCreateRequestDTO.getShoppingBooks().stream()
+        Map<String, Integer> bookIdNumberMap = shoppingCartRequestDTO.getShoppingBooks().stream()
                 .collect(Collectors.toMap(ShoppingBookRequestDTO::getBookId, ShoppingBookRequestDTO::getNumber));
-        List<String> bookIds = shoppingCartCreateRequestDTO.getShoppingBooks().stream().map(ShoppingBookRequestDTO::getBookId).toList();
+        List<String> bookIds = shoppingCartRequestDTO.getShoppingBooks().stream().map(ShoppingBookRequestDTO::getBookId).toList();
         List<Book> books = bookRepository.findAllByIds(bookIds);
         List<ShoppingBook> shoppingBooks = books.stream()
                 .map(book -> new ShoppingBook(book, bookIdNumberMap.get(book.getId())))
                 .toList();
-        shoppingCart.setUserId(shoppingCartCreateRequestDTO.getUserId());
+        shoppingCart.setUserId(shoppingCartRequestDTO.getUserId());
+        shoppingCart.setBooks(shoppingBooks);
+        return shoppingCartRepository.save(shoppingCart);
+    }
+
+    public ShoppingCart update(ShoppingCartRequestDTO shoppingCartRequestDTO) {
+        ShoppingCart shoppingCart = shoppingCartRepository.findByUserId(shoppingCartRequestDTO.getUserId());
+        Map<String, Integer> bookIdNumberMap = shoppingCartRequestDTO.getShoppingBooks().stream()
+                .collect(Collectors.toMap(ShoppingBookRequestDTO::getBookId, ShoppingBookRequestDTO::getNumber));
+        List<String> bookIds = shoppingCartRequestDTO.getShoppingBooks().stream().map(ShoppingBookRequestDTO::getBookId).toList();
+        List<Book> books = bookRepository.findAllByIds(bookIds);
+        List<ShoppingBook> shoppingBooks = books.stream()
+                .map(book -> new ShoppingBook(book, bookIdNumberMap.get(book.getId())))
+                .toList();
         shoppingCart.setBooks(shoppingBooks);
         return shoppingCartRepository.save(shoppingCart);
     }
