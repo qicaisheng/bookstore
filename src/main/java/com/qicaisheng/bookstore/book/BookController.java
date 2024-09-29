@@ -2,6 +2,7 @@ package com.qicaisheng.bookstore.book;
 
 import com.qicaisheng.bookstore.book.domain.Book;
 import com.qicaisheng.bookstore.book.infrastructure.BookCreateRequestDTO;
+import com.qicaisheng.bookstore.common.PageDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,8 +16,9 @@ public class BookController {
     private final BookService bookService;
 
     @GetMapping
-    public List<Book> list() {
-        return bookService.list();
+    public PageDTO<Book> list(@RequestParam(defaultValue = "0") int page,
+                              @RequestParam(defaultValue = "10") int size) {
+        return bookService.list(page, size);
     }
 
     @PostMapping

@@ -3,10 +3,10 @@ package com.qicaisheng.bookstore.book;
 import com.qicaisheng.bookstore.book.domain.Book;
 import com.qicaisheng.bookstore.book.domain.BookRepository;
 import com.qicaisheng.bookstore.book.infrastructure.BookCreateRequestDTO;
+import com.qicaisheng.bookstore.common.PageDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -26,7 +26,7 @@ public class BookService {
         return bookRepository.save(book);
     }
 
-    public List<Book> list() {
-        return bookRepository.list();
+    public PageDTO<Book> list(int page, int size) {
+        return bookRepository.list(page, size);
     }
 }

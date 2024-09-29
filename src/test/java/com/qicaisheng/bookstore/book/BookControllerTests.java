@@ -30,13 +30,17 @@ public class BookControllerTests {
                 .andExpect(jsonPath("$.price.currency").value("CNY"))
                 .andExpect(jsonPath("$.category").value("Business"));
 
-        mockMvc.perform(MockMvcRequestBuilders.get("/books/"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/books/?page=0&size=10"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()").value(1))
-                .andExpect(jsonPath("$[0].title").value("book 1"))
-                .andExpect(jsonPath("$[0].author").value("author 1"))
-                .andExpect(jsonPath("$[0].price.value").value(100.00))
-                .andExpect(jsonPath("$[0].price.currency").value("CNY"))
-                .andExpect(jsonPath("$[0].category").value("Business"));
+                .andExpect(jsonPath("$.content.length()").value(1))
+                .andExpect(jsonPath("$.content[0].title").value("book 1"))
+                .andExpect(jsonPath("$.content[0].author").value("author 1"))
+                .andExpect(jsonPath("$.content[0].price.value").value(100.00))
+                .andExpect(jsonPath("$.content[0].price.currency").value("CNY"))
+                .andExpect(jsonPath("$.content[0].category").value("Business"))
+                .andExpect(jsonPath("$.pageNumber").value(0))
+                .andExpect(jsonPath("$.pageSize").value(10))
+                .andExpect(jsonPath("$.totalElements").value(1))
+                .andExpect(jsonPath("$.totalPages").value(1));
     }
 }
