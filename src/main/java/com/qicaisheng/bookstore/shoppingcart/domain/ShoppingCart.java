@@ -1,4 +1,4 @@
-package com.qicaisheng.bookstore.shoppingcart;
+package com.qicaisheng.bookstore.shoppingcart.domain;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -3,6 +3,8 @@ package com.qicaisheng.bookstore.shoppingcart;
 import com.qicaisheng.bookstore.book.TestBookFactory;
 import com.qicaisheng.bookstore.book.infrastructure.BookJPARepository;
 import com.qicaisheng.bookstore.book.infrastructure.BookPO;
+import com.qicaisheng.bookstore.shoppingcart.domain.ShoppingCartRepository;
+import com.qicaisheng.bookstore.shoppingcart.infrastructure.ShoppingBookJPARepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -2,6 +2,10 @@ package com.qicaisheng.bookstore.shoppingcart;
 
 import com.qicaisheng.bookstore.book.TestBookFactory;
 import com.qicaisheng.bookstore.book.infrastructure.BookJPARepository;
+import com.qicaisheng.bookstore.shoppingcart.domain.ShoppingCart;
+import com.qicaisheng.bookstore.shoppingcart.domain.ShoppingCartRepository;
+import com.qicaisheng.bookstore.shoppingcart.infrastructure.ShoppingBookJPARepository;
+import com.qicaisheng.bookstore.shoppingcart.infrastructure.ShoppingBookPO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

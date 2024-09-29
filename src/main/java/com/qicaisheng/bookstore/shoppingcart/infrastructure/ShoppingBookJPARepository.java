@@ -1,4 +1,4 @@
-package com.qicaisheng.bookstore.shoppingcart;
+package com.qicaisheng.bookstore.shoppingcart.infrastructure;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

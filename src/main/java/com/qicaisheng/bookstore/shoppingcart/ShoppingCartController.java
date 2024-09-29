@@ -1,5 +1,6 @@
 package com.qicaisheng.bookstore.shoppingcart;
 
+import com.qicaisheng.bookstore.shoppingcart.domain.ShoppingCart;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +12,7 @@ public class ShoppingCartController {
 
     @PostMapping("/users/{userId}/shopping-cart")
     public ShoppingCart save(@PathVariable String userId,
-                               @RequestBody ShoppingCartRequestDTO shoppingCartRequestDTO) {
+                             @RequestBody ShoppingCartRequestDTO shoppingCartRequestDTO) {
         shoppingCartRequestDTO.setUserId(userId);
         return shoppingCartService.save(shoppingCartRequestDTO);
     }

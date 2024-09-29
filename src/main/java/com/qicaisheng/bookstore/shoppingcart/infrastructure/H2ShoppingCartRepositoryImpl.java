@@ -1,8 +1,11 @@
-package com.qicaisheng.bookstore.shoppingcart;
+package com.qicaisheng.bookstore.shoppingcart.infrastructure;
 
 import com.qicaisheng.bookstore.book.domain.Book;
 import com.qicaisheng.bookstore.book.infrastructure.BookConverter;
 import com.qicaisheng.bookstore.book.infrastructure.BookJPARepository;
+import com.qicaisheng.bookstore.shoppingcart.domain.ShoppingBook;
+import com.qicaisheng.bookstore.shoppingcart.domain.ShoppingCart;
+import com.qicaisheng.bookstore.shoppingcart.domain.ShoppingCartRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
