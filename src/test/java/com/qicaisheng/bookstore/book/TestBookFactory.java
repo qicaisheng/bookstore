@@ -31,4 +31,16 @@ public class TestBookFactory {
 
         return bookPO;
     }
+
+    public static BookPO buildBookPo(String id) {
+        BookPO bookPO = new BookPO();
+        bookPO.setId(id);
+        bookPO.setAuthor("Author 1");
+        bookPO.setCategory(BookCategory.Business);
+        bookPO.setTitle("Book Title");
+        bookPO.setPriceValue(new BigDecimal("99.99"));
+        bookPO.setPriceCurrency(Currency.CNY);
+
+        return bookPO;
+    }
 }
