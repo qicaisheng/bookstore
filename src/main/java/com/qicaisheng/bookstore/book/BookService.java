@@ -5,6 +5,7 @@ import com.qicaisheng.bookstore.book.domain.BookRepository;
 import com.qicaisheng.bookstore.common.PageDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -14,6 +15,7 @@ public class BookService {
 
     private final BookRepository bookRepository;
 
+    @Transactional
     public Book save(BookCreateRequestDTO bookCreateRequestDTO) {
         Book book = new Book();
         book.setId(UUID.randomUUID().toString());
@@ -25,6 +27,7 @@ public class BookService {
         return bookRepository.save(book);
     }
 
+    @Transactional
     public Book update(String id, BookUpdateRequestDTO bookUpdateRequestDTO) {
         Book book = new Book();
         book.setId(id);
