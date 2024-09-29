@@ -1,4 +1,4 @@
-package com.qicaisheng.bookstore;
+package com.qicaisheng.bookstore.book;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

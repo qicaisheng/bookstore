@@ -1,5 +1,7 @@
-package com.qicaisheng.bookstore;
+package com.qicaisheng.bookstore.book;
 
+import com.qicaisheng.bookstore.book.domain.BookCategory;
+import com.qicaisheng.bookstore.book.domain.Currency;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Getter;

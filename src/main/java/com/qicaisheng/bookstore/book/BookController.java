@@ -1,5 +1,6 @@
-package com.qicaisheng.bookstore;
+package com.qicaisheng.bookstore.book;
 
+import com.qicaisheng.bookstore.book.domain.Book;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

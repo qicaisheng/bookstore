@@ -1,4 +1,4 @@
-package com.qicaisheng.bookstore;
+package com.qicaisheng.bookstore.book.domain;
 
 import lombok.Getter;
 import lombok.Setter;

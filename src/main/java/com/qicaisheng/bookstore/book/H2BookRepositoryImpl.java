@@ -1,5 +1,7 @@
-package com.qicaisheng.bookstore;
+package com.qicaisheng.bookstore.book;
 
+import com.qicaisheng.bookstore.book.domain.Book;
+import com.qicaisheng.bookstore.book.domain.BookRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 

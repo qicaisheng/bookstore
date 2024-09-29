@@ -1,5 +1,8 @@
-package com.qicaisheng.bookstore;
+package com.qicaisheng.bookstore.book;
 
+import com.qicaisheng.bookstore.book.domain.Book;
+import com.qicaisheng.bookstore.book.domain.BookCategory;
+import com.qicaisheng.bookstore.book.domain.Currency;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
