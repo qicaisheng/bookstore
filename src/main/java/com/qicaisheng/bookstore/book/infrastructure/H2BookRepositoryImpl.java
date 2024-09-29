@@ -2,7 +2,7 @@ package com.qicaisheng.bookstore.book.infrastructure;
 
 import com.qicaisheng.bookstore.book.domain.Book;
 import com.qicaisheng.bookstore.book.domain.BookRepository;
-import com.qicaisheng.bookstore.common.PageDTO;
+import com.qicaisheng.bookstore.common.Page;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -24,11 +24,11 @@ public class H2BookRepositoryImpl implements BookRepository {
     }
 
     @Override
-    public PageDTO<Book> list(int page, int size) {
+    public Page<Book> list(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
         var bookPage = bookJPARepository.findAll(pageable);
         List<Book> content = bookPage.stream().map(BookConverter::toEntity).toList();
-        return new PageDTO<>(content, bookPage.getNumber(), bookPage.getSize(),
+        return new Page<>(content, bookPage.getNumber(), bookPage.getSize(),
                 bookPage.getTotalElements(), bookPage.getTotalPages());
     }
 

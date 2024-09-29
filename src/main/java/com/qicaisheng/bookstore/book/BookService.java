@@ -2,7 +2,7 @@ package com.qicaisheng.bookstore.book;
 
 import com.qicaisheng.bookstore.book.domain.Book;
 import com.qicaisheng.bookstore.book.domain.BookRepository;
-import com.qicaisheng.bookstore.common.PageDTO;
+import com.qicaisheng.bookstore.common.Page;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,7 +38,7 @@ public class BookService {
         return bookRepository.update(book);
     }
 
-    public PageDTO<Book> list(int page, int size) {
+    public Page<Book> list(int page, int size) {
         return bookRepository.list(page, size);
     }
 }

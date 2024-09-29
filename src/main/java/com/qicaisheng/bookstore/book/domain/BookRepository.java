@@ -1,13 +1,13 @@
 package com.qicaisheng.bookstore.book.domain;
 
-import com.qicaisheng.bookstore.common.PageDTO;
+import com.qicaisheng.bookstore.common.Page;
 
 import java.util.List;
 
 public interface BookRepository {
     Book save(Book book);
 
-    PageDTO<Book> list(int page, int size);
+    Page<Book> list(int page, int size);
 
     Book update(Book book);
 

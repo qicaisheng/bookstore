@@ -4,7 +4,7 @@ import com.qicaisheng.bookstore.book.domain.Book;
 import com.qicaisheng.bookstore.book.domain.BookRepository;
 import com.qicaisheng.bookstore.book.infrastructure.BookJPARepository;
 import com.qicaisheng.bookstore.book.infrastructure.BookPO;
-import com.qicaisheng.bookstore.common.PageDTO;
+import com.qicaisheng.bookstore.common.Page;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -43,7 +43,7 @@ class BookRepositoryTest {
 
         assertSame(savedBook, book);
 
-        PageDTO<Book> response = bookRepository.list(0, 10);
+        Page<Book> response = bookRepository.list(0, 10);
         assertNotNull(response.getContent());
         List<Book> books = response.getContent();
         assertEquals(1, books.size());
