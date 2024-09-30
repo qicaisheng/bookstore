@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ShoppingBookJPARepository extends JpaRepository<ShoppingBookPO, String> {
     List<ShoppingBookPO> findByUserId(String userId);
+    void deleteAllByUserId(String userId);
 }
