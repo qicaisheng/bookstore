@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Repository
@@ -43,18 +44,14 @@ public class H2ShoppingCartRepositoryImpl implements ShoppingCartRepository {
                 .map(ShoppingBookPO::getBookId)
                 .collect(Collectors.toList());
 
-        List<Book> books = bookJPARepository.findAllById(bookIds)
+        Map<String, Book> bookIdAndBookMap = bookJPARepository.findAllById(bookIds)
                 .stream()
                 .map(BookConverter::toEntity)
-                .toList();
+                .collect(Collectors.toMap(Book::getId, book -> book));
 
-        List<ShoppingBook> shoppingBookList = books.stream()
-                .map(book -> new ShoppingBook(book, shoppingBooks.stream()
-                        .filter(shoppingBookPO -> shoppingBookPO.getBookId().equals(book.getId()))
-                        .findFirst()
-                        .orElseThrow(() -> new RuntimeException("Book not found in shopping cart"))
-                        .getQuantity()))
-                .collect(Collectors.toList());
+        List<ShoppingBook> shoppingBookList = shoppingBooks.stream()
+                .map(shoppingBookPO -> new ShoppingBook(bookIdAndBookMap.get(shoppingBookPO.getBookId()), shoppingBookPO.getQuantity()))
+                .toList();
 
         return new ShoppingCart(userId, shoppingBookList);
     }
