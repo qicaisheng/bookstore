@@ -42,5 +42,6 @@ public class H2BookRepositoryImpl implements BookRepository {
     @Override
     public List<Book> findAllByIds(List<String> bookIds) {
         List<BookPO> bookPOs = bookJPARepository.findAllById(bookIds);
-        return bookPOs.stream().map(BookConverter::toEntity).toList();    }
+        return bookPOs.stream().map(BookConverter::toEntity).toList();
+    }
 }
