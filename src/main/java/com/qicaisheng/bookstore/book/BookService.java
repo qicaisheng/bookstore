@@ -17,28 +17,28 @@ public class BookService {
 
     @Transactional
     public Book save(BookCreateRequestDTO bookCreateRequestDTO) {
-        Book book = new Book();
-        book.setId(UUID.randomUUID().toString());
-        book.setTitle(bookCreateRequestDTO.getTitle());
-        book.setCategory(bookCreateRequestDTO.getCategory());
-        book.setAuthor(bookCreateRequestDTO.getAuthor());
-        book.setPrice(bookCreateRequestDTO.getPrice());
-
+        String id = UUID.randomUUID().toString();
+        Book book =  toEntity(bookCreateRequestDTO, id);
         return bookRepository.save(book);
     }
 
     @Transactional
     public Book update(String id, BookUpdateRequestDTO bookUpdateRequestDTO) {
-        Book book = new Book();
-        book.setId(id);
-        book.setTitle(bookUpdateRequestDTO.getTitle());
-        book.setCategory(bookUpdateRequestDTO.getCategory());
-        book.setAuthor(bookUpdateRequestDTO.getAuthor());
-        book.setPrice(bookUpdateRequestDTO.getPrice());
+        Book book = toEntity(bookUpdateRequestDTO, id);
         return bookRepository.update(book);
     }
 
     public Page<Book> list(int page, int size) {
         return bookRepository.list(page, size);
+    }
+
+    private static Book toEntity(BookRequestDTO bookRequestDTO, String id) {
+        Book book = new Book();
+        book.setId(id);
+        book.setTitle(bookRequestDTO.getTitle());
+        book.setCategory(bookRequestDTO.getCategory());
+        book.setAuthor(bookRequestDTO.getAuthor());
+        book.setPrice(bookRequestDTO.getPrice());
+        return book;
     }
 }
