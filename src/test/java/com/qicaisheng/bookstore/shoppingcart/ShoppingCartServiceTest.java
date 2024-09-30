@@ -10,6 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -42,8 +43,6 @@ class ShoppingCartServiceTest {
         ShoppingBookRequestDTO bookRequest2 = new ShoppingBookRequestDTO("book2", 3);
         requestDTO.setShoppingBooks(Arrays.asList(bookRequest1, bookRequest2));
 
-        ShoppingCart existingCart = new ShoppingCart();
-        existingCart.setUserId(userId);
 
         Book book1 = new Book();
         book1.setId("book1");
@@ -53,7 +52,6 @@ class ShoppingCartServiceTest {
         book2.setId("book2");
         book2.setTitle("Book Title 2");
 
-        when(shoppingCartRepository.findByUserId(userId)).thenReturn(existingCart);
         when(bookRepository.findAllByIds(anyList())).thenReturn(Arrays.asList(book1, book2));
         when(shoppingCartRepository.save(any(ShoppingCart.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
@@ -67,7 +65,6 @@ class ShoppingCartServiceTest {
         assertEquals(2, updatedCart.getBooks().get(0).getQuantity());
         assertEquals(3, updatedCart.getBooks().get(1).getQuantity());
 
-        verify(shoppingCartRepository).findByUserId(userId);
         verify(bookRepository).findAllByIds(anyList());
         verify(shoppingCartRepository).save(updatedCart);
     }

@@ -16,14 +16,12 @@ class ShoppingCartTest {
 
     @Test
     void shouldGetTotalPrice() {
-        ShoppingCart shoppingCart = new ShoppingCart();
         String user1 = "user1";
-        shoppingCart.setUserId(user1);
         Book book1 = TestBookFactory.buildBook("book1");
         Book book2 = TestBookFactory.buildBook("book2");
         ShoppingBook shoppingBook1 = new ShoppingBook(book1, 2);
         ShoppingBook shoppingBook2 = new ShoppingBook(book2, 3);
-        shoppingCart.setBooks(Arrays.asList(shoppingBook1, shoppingBook2));
+        ShoppingCart shoppingCart = new ShoppingCart(user1, Arrays.asList(shoppingBook1, shoppingBook2));
 
         Price totalPrice = shoppingCart.getTotalPrice();
 
@@ -33,10 +31,8 @@ class ShoppingCartTest {
 
     @Test
     void shouldReturnZeroWhenGetTotalPriceGiveEmptyShoppingCart() {
-        ShoppingCart shoppingCart = new ShoppingCart();
         String user1 = "user1";
-        shoppingCart.setUserId(user1);
-        shoppingCart.setBooks(new ArrayList<>());
+        ShoppingCart shoppingCart = new ShoppingCart(user1, new ArrayList<>());
 
         Price totalPrice = shoppingCart.getTotalPrice();
 

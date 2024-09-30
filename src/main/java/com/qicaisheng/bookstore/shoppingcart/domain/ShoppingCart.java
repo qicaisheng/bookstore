@@ -3,14 +3,14 @@ package com.qicaisheng.bookstore.shoppingcart.domain;
 import com.qicaisheng.bookstore.book.domain.Book;
 import com.qicaisheng.bookstore.book.domain.Currency;
 import com.qicaisheng.bookstore.book.domain.Price;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.List;
 
 @Getter
-@Setter
+@AllArgsConstructor
 public class ShoppingCart {
     private String userId;
     private List<ShoppingBook> books;

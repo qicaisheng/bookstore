@@ -39,9 +39,6 @@ public class H2ShoppingCartRepositoryImpl implements ShoppingCartRepository {
     @Override
     public ShoppingCart findByUserId(String userId) {
         List<ShoppingBookPO> shoppingBooks = shoppingBookJPARepository.findByUserId(userId);
-        ShoppingCart shoppingCart = new ShoppingCart();
-        shoppingCart.setUserId(userId);
-
         List<String> bookIds = shoppingBooks.stream()
                 .map(ShoppingBookPO::getBookId)
                 .collect(Collectors.toList());
@@ -59,6 +56,6 @@ public class H2ShoppingCartRepositoryImpl implements ShoppingCartRepository {
                         .getQuantity()))
                 .collect(Collectors.toList());
 
-        shoppingCart.setBooks(shoppingBookList);
-        return shoppingCart;    }
+        return new ShoppingCart(userId, shoppingBookList);
+    }
 }
