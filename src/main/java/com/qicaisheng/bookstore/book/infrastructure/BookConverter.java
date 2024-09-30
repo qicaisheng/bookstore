@@ -1,7 +1,7 @@
 package com.qicaisheng.bookstore.book.infrastructure;
 
 import com.qicaisheng.bookstore.book.domain.Book;
-import com.qicaisheng.bookstore.book.domain.Price;
+import com.qicaisheng.bookstore.common.Price;
 
 public class BookConverter {
     public static Book toEntity(BookPO bookPO) {

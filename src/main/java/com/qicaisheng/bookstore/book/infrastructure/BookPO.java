@@ -1,7 +1,7 @@
 package com.qicaisheng.bookstore.book.infrastructure;
 
 import com.qicaisheng.bookstore.book.domain.BookCategory;
-import com.qicaisheng.bookstore.book.domain.Currency;
+import com.qicaisheng.bookstore.common.Currency;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Getter;

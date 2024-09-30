@@ -1,6 +1,6 @@
 package com.qicaisheng.bookstore;
 
-import com.qicaisheng.bookstore.shoppingcart.DuplicateBookIdException;
+import com.qicaisheng.bookstore.common.DuplicateBookIdException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;

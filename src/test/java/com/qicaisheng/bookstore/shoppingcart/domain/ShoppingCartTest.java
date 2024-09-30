@@ -2,8 +2,8 @@ package com.qicaisheng.bookstore.shoppingcart.domain;
 
 import com.qicaisheng.bookstore.book.TestBookFactory;
 import com.qicaisheng.bookstore.book.domain.Book;
-import com.qicaisheng.bookstore.book.domain.Currency;
-import com.qicaisheng.bookstore.book.domain.Price;
+import com.qicaisheng.bookstore.common.Currency;
+import com.qicaisheng.bookstore.common.Price;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;

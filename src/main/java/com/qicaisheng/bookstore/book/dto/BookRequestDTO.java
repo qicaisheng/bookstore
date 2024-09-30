@@ -1,7 +1,7 @@
 package com.qicaisheng.bookstore.book.dto;
 
 import com.qicaisheng.bookstore.book.domain.BookCategory;
-import com.qicaisheng.bookstore.book.domain.Price;
+import com.qicaisheng.bookstore.common.Price;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;

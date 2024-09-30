@@ -1,5 +1,6 @@
 package com.qicaisheng.bookstore.book.domain;
 
+import com.qicaisheng.bookstore.common.Price;
 import lombok.Getter;
 import lombok.Setter;
 
