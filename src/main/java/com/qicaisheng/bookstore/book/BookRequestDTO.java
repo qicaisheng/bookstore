@@ -3,6 +3,7 @@ package com.qicaisheng.bookstore.book;
 import com.qicaisheng.bookstore.book.domain.BookCategory;
 import com.qicaisheng.bookstore.book.domain.Price;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -21,6 +22,7 @@ public class BookRequestDTO {
 
     @Schema(description = "Price details of the book")
     @NotNull(message = "Price cannot be null")
+    @Valid
     private Price price;
 
     @Schema(description = "Category of the book", example = "Technology")
