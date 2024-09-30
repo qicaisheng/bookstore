@@ -30,8 +30,6 @@ public class ShoppingCartService {
         List<ShoppingBook> shoppingBooks = books.stream()
                 .map(book -> new ShoppingBook(book, bookIdQuantityMap.get(book.getId())))
                 .toList();
-//        ShoppingCart shoppingCart = shoppingCartRepository.findByUserId(shoppingCartRequestDTO.getUserId());
-//        shoppingCart.setBooks(shoppingBooks);
         ShoppingCart shoppingCart = new ShoppingCart(shoppingCartRequestDTO.getUserId(), shoppingBooks);
         return shoppingCartRepository.save(shoppingCart);
     }
