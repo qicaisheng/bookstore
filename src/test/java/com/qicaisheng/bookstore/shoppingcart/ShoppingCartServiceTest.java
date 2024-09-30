@@ -1,5 +1,6 @@
 package com.qicaisheng.bookstore.shoppingcart;
 
+import com.qicaisheng.bookstore.book.TestBookFactory;
 import com.qicaisheng.bookstore.book.domain.Book;
 import com.qicaisheng.bookstore.book.domain.BookRepository;
 import com.qicaisheng.bookstore.shoppingcart.dto.ShoppingBookRequestDTO;
@@ -44,14 +45,8 @@ class ShoppingCartServiceTest {
         ShoppingBookRequestDTO bookRequest2 = new ShoppingBookRequestDTO("book2", 3);
         requestDTO.setShoppingBooks(Arrays.asList(bookRequest1, bookRequest2));
 
-
-        Book book1 = new Book();
-        book1.setId("book1");
-        book1.setTitle("Book Title 1");
-
-        Book book2 = new Book();
-        book2.setId("book2");
-        book2.setTitle("Book Title 2");
+        Book book1 = TestBookFactory.buildBook("book1");
+        Book book2 = TestBookFactory.buildBook("book2");
 
         when(bookRepository.findAllByIds(anyList())).thenReturn(Arrays.asList(book1, book2));
         when(shoppingCartRepository.save(any(ShoppingCart.class))).thenAnswer(invocation -> invocation.getArgument(0));
