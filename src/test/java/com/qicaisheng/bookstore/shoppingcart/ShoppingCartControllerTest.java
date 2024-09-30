@@ -100,4 +100,15 @@ class ShoppingCartControllerTest {
                 .andExpect(jsonPath("$.totalPrice.value").value(699.93))
                 .andExpect(jsonPath("$.totalPrice.currency").value("CNY"));
     }
+
+    @Test
+    void shouldFailedWhenSaveGivenWithDuplicatedBookId() throws Exception {
+        String userId = "user1";
+
+        mockMvc.perform(post("/users/{userId}/shopping-cart", userId)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"shoppingBooks\":[{\"bookId\":\"book1\",\"quantity\":2},{\"bookId\":\"book1\",\"quantity\":3}]}"))
+                .andExpect(status().is4xxClientError())
+                .andExpect(jsonPath("$.bookId").value("Book IDs must be unique: book1"));
+    }
 }

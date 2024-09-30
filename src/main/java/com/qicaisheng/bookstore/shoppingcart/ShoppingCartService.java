@@ -9,9 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,6 +21,8 @@ public class ShoppingCartService {
 
     @Transactional
     public ShoppingCart save(ShoppingCartRequestDTO shoppingCartRequestDTO) {
+        validateShoppingBooks(shoppingCartRequestDTO.getShoppingBooks());
+
         Map<String, Integer> bookIdQuantityMap = shoppingCartRequestDTO.getShoppingBooks().stream()
                 .collect(Collectors.toMap(ShoppingBookRequestDTO::getBookId, ShoppingBookRequestDTO::getQuantity));
         List<String> bookIds = new ArrayList<>(bookIdQuantityMap.keySet());
@@ -30,6 +30,7 @@ public class ShoppingCartService {
         List<ShoppingBook> shoppingBooks = books.stream()
                 .map(book -> new ShoppingBook(book, bookIdQuantityMap.get(book.getId())))
                 .toList();
+
         ShoppingCart shoppingCart = new ShoppingCart(shoppingCartRequestDTO.getUserId(), shoppingBooks);
         return shoppingCartRepository.save(shoppingCart);
     }
@@ -37,4 +38,12 @@ public class ShoppingCartService {
     public ShoppingCart findByUserId(String userId) {
         return shoppingCartRepository.findByUserId(userId);
     }
-}
+
+    public void validateShoppingBooks(List<ShoppingBookRequestDTO> shoppingBooks) {
+        Set<String> bookIdSet = new HashSet<>();
+        for (ShoppingBookRequestDTO book : shoppingBooks) {
+            if (!bookIdSet.add(book.getBookId())) {
+                throw new DuplicateBookIdException("Book IDs must be unique: " + book.getBookId());
+            }
+        }
+    }}
