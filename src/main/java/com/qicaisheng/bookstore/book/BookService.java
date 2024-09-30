@@ -1,5 +1,8 @@
 package com.qicaisheng.bookstore.book;
 
+import com.qicaisheng.bookstore.book.dto.BookCreateRequestDTO;
+import com.qicaisheng.bookstore.book.dto.BookRequestDTO;
+import com.qicaisheng.bookstore.book.dto.BookUpdateRequestDTO;
 import com.qicaisheng.bookstore.book.domain.Book;
 import com.qicaisheng.bookstore.book.domain.BookRepository;
 import com.qicaisheng.bookstore.common.Page;

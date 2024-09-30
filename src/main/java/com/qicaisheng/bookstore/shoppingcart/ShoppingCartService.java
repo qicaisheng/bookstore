@@ -2,6 +2,8 @@ package com.qicaisheng.bookstore.shoppingcart;
 
 import com.qicaisheng.bookstore.book.domain.Book;
 import com.qicaisheng.bookstore.book.domain.BookRepository;
+import com.qicaisheng.bookstore.shoppingcart.dto.ShoppingBookRequestDTO;
+import com.qicaisheng.bookstore.shoppingcart.dto.ShoppingCartRequestDTO;
 import com.qicaisheng.bookstore.shoppingcart.domain.ShoppingBook;
 import com.qicaisheng.bookstore.shoppingcart.domain.ShoppingCart;
 import com.qicaisheng.bookstore.shoppingcart.domain.ShoppingCartRepository;

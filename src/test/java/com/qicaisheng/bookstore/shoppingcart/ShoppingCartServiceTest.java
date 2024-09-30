@@ -2,6 +2,8 @@ package com.qicaisheng.bookstore.shoppingcart;
 
 import com.qicaisheng.bookstore.book.domain.Book;
 import com.qicaisheng.bookstore.book.domain.BookRepository;
+import com.qicaisheng.bookstore.shoppingcart.dto.ShoppingBookRequestDTO;
+import com.qicaisheng.bookstore.shoppingcart.dto.ShoppingCartRequestDTO;
 import com.qicaisheng.bookstore.shoppingcart.domain.ShoppingCart;
 import com.qicaisheng.bookstore.shoppingcart.domain.ShoppingCartRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,7 +12,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,4 +1,4 @@
-package com.qicaisheng.bookstore.book;
+package com.qicaisheng.bookstore.book.dto;
 
 import com.qicaisheng.bookstore.book.domain.BookCategory;
 import com.qicaisheng.bookstore.book.domain.Price;

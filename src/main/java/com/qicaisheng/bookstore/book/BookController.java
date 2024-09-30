@@ -1,5 +1,7 @@
 package com.qicaisheng.bookstore.book;
 
+import com.qicaisheng.bookstore.book.dto.BookCreateRequestDTO;
+import com.qicaisheng.bookstore.book.dto.BookUpdateRequestDTO;
 import com.qicaisheng.bookstore.book.domain.Book;
 import com.qicaisheng.bookstore.common.Page;
 import io.swagger.v3.oas.annotations.Operation;
