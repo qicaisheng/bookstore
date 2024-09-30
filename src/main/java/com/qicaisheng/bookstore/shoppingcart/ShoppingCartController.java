@@ -4,6 +4,7 @@ import com.qicaisheng.bookstore.shoppingcart.domain.ShoppingCart;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class ShoppingCartController {
     public ShoppingCart save(
             @Parameter(description = "The ID of the user for whom the shopping cart is being created")
             @PathVariable String userId,
-            @RequestBody ShoppingCartRequestDTO shoppingCartRequestDTO) {
+            @Valid @RequestBody ShoppingCartRequestDTO shoppingCartRequestDTO) {
         shoppingCartRequestDTO.setUserId(userId);
         return shoppingCartService.save(shoppingCartRequestDTO);
     }
