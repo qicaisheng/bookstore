@@ -24,7 +24,7 @@ public class ShoppingCartService {
     public ShoppingCart save(ShoppingCartRequestDTO shoppingCartRequestDTO) {
         ShoppingCart shoppingCart = shoppingCartRepository.findByUserId(shoppingCartRequestDTO.getUserId());
         Map<String, Integer> bookIdNumberMap = shoppingCartRequestDTO.getShoppingBooks().stream()
-                .collect(Collectors.toMap(ShoppingBookRequestDTO::getBookId, ShoppingBookRequestDTO::getNumber));
+                .collect(Collectors.toMap(ShoppingBookRequestDTO::getBookId, ShoppingBookRequestDTO::getQuantity));
         List<String> bookIds = shoppingCartRequestDTO.getShoppingBooks().stream().map(ShoppingBookRequestDTO::getBookId).toList();
         List<Book> books = bookRepository.findAllByIds(bookIds);
         List<ShoppingBook> shoppingBooks = books.stream()

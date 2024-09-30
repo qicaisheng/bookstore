@@ -57,7 +57,7 @@ class ShoppingCartRepositoryTest {
         ShoppingBookPO shoppingBookPO = new ShoppingBookPO();
         shoppingBookPO.setUserId(userID);
         shoppingBookPO.setBookId("book1");
-        shoppingBookPO.setNumber(3);
+        shoppingBookPO.setQuantity(3);
         shoppingBookJPARepository.save(shoppingBookPO);
 
         ShoppingCart emptyShoppingCart = shoppingCartRepository.findByUserId(userID);
@@ -66,7 +66,7 @@ class ShoppingCartRepositoryTest {
         assertSame(emptyShoppingCart.getUserId(), userID);
         assertNotNull(emptyShoppingCart.getBooks());
         assertEquals(1, emptyShoppingCart.getBooks().size());
-        assertEquals(3, emptyShoppingCart.getBooks().get(0).getNumber());
+        assertEquals(3, emptyShoppingCart.getBooks().get(0).getQuantity());
         assertEquals("book1", emptyShoppingCart.getBooks().get(0).getBook().getId());
         assertEquals("Book Title", emptyShoppingCart.getBooks().get(0).getBook().getTitle());
     }

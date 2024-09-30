@@ -65,8 +65,8 @@ class ShoppingCartServiceTest {
         assertNotNull(updatedCart);
         assertEquals(userId, updatedCart.getUserId());
         assertEquals(2, updatedCart.getBooks().size());
-        assertEquals(2, updatedCart.getBooks().get(0).getNumber());
-        assertEquals(3, updatedCart.getBooks().get(1).getNumber());
+        assertEquals(2, updatedCart.getBooks().get(0).getQuantity());
+        assertEquals(3, updatedCart.getBooks().get(1).getQuantity());
 
         verify(shoppingCartRepository).findByUserId(userId);
         verify(bookRepository).findAllByIds(Arrays.asList("book1", "book2"));

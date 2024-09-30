@@ -27,7 +27,7 @@ public class H2ShoppingCartRepositoryImpl implements ShoppingCartRepository {
                     ShoppingBookPO shoppingBookPO = new ShoppingBookPO();
                     shoppingBookPO.setUserId(shoppingCart.getUserId());
                     shoppingBookPO.setBookId(shoppingBook.getBook().getId());
-                    shoppingBookPO.setNumber(shoppingBook.getNumber());
+                    shoppingBookPO.setQuantity(shoppingBook.getQuantity());
                     return shoppingBookPO;
                 })
                 .collect(Collectors.toList());
@@ -56,7 +56,7 @@ public class H2ShoppingCartRepositoryImpl implements ShoppingCartRepository {
                         .filter(shoppingBookPO -> shoppingBookPO.getBookId().equals(book.getId()))
                         .findFirst()
                         .orElseThrow(() -> new RuntimeException("Book not found in shopping cart"))
-                        .getNumber()))
+                        .getQuantity()))
                 .collect(Collectors.toList());
 
         shoppingCart.setBooks(shoppingBookList);

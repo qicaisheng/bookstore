@@ -8,5 +8,5 @@ import lombok.Getter;
 @Getter
 public class ShoppingBook {
     private Book book;
-    private int number;
+    private int quantity;
 }

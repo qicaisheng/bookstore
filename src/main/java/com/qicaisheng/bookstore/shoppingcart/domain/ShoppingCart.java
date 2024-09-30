@@ -21,7 +21,7 @@ public class ShoppingCart {
         for (ShoppingBook shoppingBook : books) {
             Book book = shoppingBook.getBook();
             BigDecimal bookPriceValue = book.getPrice().getValue();
-            int quantity = shoppingBook.getNumber();
+            int quantity = shoppingBook.getQuantity();
             totalValue = totalValue.add(bookPriceValue.multiply(BigDecimal.valueOf(quantity)));
         }
 

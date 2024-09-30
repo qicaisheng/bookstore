@@ -15,7 +15,7 @@ public class ShoppingBookPO {
     private String id;
     private String userId;
     private String bookId;
-    private int number;
+    private int quantity;
 
     @PrePersist
     public void generateId() {

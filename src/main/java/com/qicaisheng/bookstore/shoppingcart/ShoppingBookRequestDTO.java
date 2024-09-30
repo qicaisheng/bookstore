@@ -14,5 +14,5 @@ public class ShoppingBookRequestDTO {
     private String bookId;
 
     @Schema(description = "The quantity of the book", example = "2")
-    private int number;
+    private int quantity;
 }
