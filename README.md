@@ -4,8 +4,8 @@ This is a RESTful API for managing books, shopping carts and checkout in a books
 
 ## Design Decisions
 - **Domain-Driven Design (DDD)**: The design follows DDD principles to ensure that the domain logic is the focus of the application. This helps in building a rich domain model that reflects the business requirements and facilitates better communication between technical and non-technical stakeholders.
-- **Modular Architecture**: The application is structured with separate layers for controllers, services, and repositories, following best practices in software design to enhance maintainability and readability.
-- **DTOs for Data Transfer**: Data Transfer Objects (DTOs) are used to encapsulate the data sent to and from the API, providing a clear contract and reducing the risk of exposing internal models.
+- **Layer Architecture**: The application is structured with separate layers for controllers, services, domain objects, domain repositories and JPA repositories, following best practices in software design to enhance maintainability and readability.
+- **DTOs for Data Transfer**: Data Transfer Objects (DTOs) are used to encapsulate the data sent to and from the API, providing a clear contract and reducing the risk of exposing internal models. But some response body is very simple, just return model tmp.
 - **H2 Database**: The H2 in-memory database is used for development and testing purposes, providing a lightweight option for data storage.
 - **Persistence Layer with Spring Data JPA**: The persistence layer utilizes Spring Data JPA, but does not leverage one-to-many relationships or similar features. Instead, operations are performed on a single table basis to simplify data management and access.
 - **Flyway for Migration Management**: Flyway is used for database migration management, providing a robust way to version control database schema changes and ensuring consistency across different environments.
