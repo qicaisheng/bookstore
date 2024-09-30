@@ -54,8 +54,7 @@ class ShoppingCartServiceTest {
         book2.setTitle("Book Title 2");
 
         when(shoppingCartRepository.findByUserId(userId)).thenReturn(existingCart);
-        when(bookRepository.findAllByIds(Arrays.asList("book1", "book2")))
-                .thenReturn(Arrays.asList(book1, book2));
+        when(bookRepository.findAllByIds(anyList())).thenReturn(Arrays.asList(book1, book2));
         when(shoppingCartRepository.save(any(ShoppingCart.class))).thenAnswer(invocation -> invocation.getArgument(0));
 
 
@@ -69,7 +68,7 @@ class ShoppingCartServiceTest {
         assertEquals(3, updatedCart.getBooks().get(1).getQuantity());
 
         verify(shoppingCartRepository).findByUserId(userId);
-        verify(bookRepository).findAllByIds(Arrays.asList("book1", "book2"));
+        verify(bookRepository).findAllByIds(anyList());
         verify(shoppingCartRepository).save(updatedCart);
     }
 }

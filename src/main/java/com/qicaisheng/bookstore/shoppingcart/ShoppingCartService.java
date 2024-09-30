@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -22,14 +23,14 @@ public class ShoppingCartService {
 
     @Transactional
     public ShoppingCart save(ShoppingCartRequestDTO shoppingCartRequestDTO) {
-        ShoppingCart shoppingCart = shoppingCartRepository.findByUserId(shoppingCartRequestDTO.getUserId());
-        Map<String, Integer> bookIdNumberMap = shoppingCartRequestDTO.getShoppingBooks().stream()
+        Map<String, Integer> bookIdQuantityMap = shoppingCartRequestDTO.getShoppingBooks().stream()
                 .collect(Collectors.toMap(ShoppingBookRequestDTO::getBookId, ShoppingBookRequestDTO::getQuantity));
-        List<String> bookIds = shoppingCartRequestDTO.getShoppingBooks().stream().map(ShoppingBookRequestDTO::getBookId).toList();
+        List<String> bookIds = new ArrayList<>(bookIdQuantityMap.keySet());
         List<Book> books = bookRepository.findAllByIds(bookIds);
         List<ShoppingBook> shoppingBooks = books.stream()
-                .map(book -> new ShoppingBook(book, bookIdNumberMap.get(book.getId())))
+                .map(book -> new ShoppingBook(book, bookIdQuantityMap.get(book.getId())))
                 .toList();
+        ShoppingCart shoppingCart = shoppingCartRepository.findByUserId(shoppingCartRequestDTO.getUserId());
         shoppingCart.setBooks(shoppingBooks);
         return shoppingCartRepository.save(shoppingCart);
     }
