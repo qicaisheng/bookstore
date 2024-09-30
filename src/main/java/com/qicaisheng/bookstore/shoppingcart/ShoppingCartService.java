@@ -43,7 +43,7 @@ public class ShoppingCartService {
         Set<String> bookIdSet = new HashSet<>();
         for (ShoppingBookRequestDTO book : shoppingBooks) {
             if (!bookIdSet.add(book.getBookId())) {
-                throw new DuplicateBookIdException("Book IDs must be unique: " + book.getBookId());
+                throw new DuplicateBookIdException("Book IDs must be unique: %s".formatted(book.getBookId()));
             }
         }
     }}
