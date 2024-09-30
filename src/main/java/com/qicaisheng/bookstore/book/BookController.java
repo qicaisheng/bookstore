@@ -5,6 +5,7 @@ import com.qicaisheng.bookstore.common.Page;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +32,7 @@ public class BookController {
             description = "Creates a new book using the provided book data.")
     @PostMapping
     public Book create(
-            @RequestBody BookCreateRequestDTO bookCreateRequestDTO) {
+            @Valid @RequestBody BookCreateRequestDTO bookCreateRequestDTO) {
         return bookService.save(bookCreateRequestDTO);
     }
 
@@ -41,7 +42,7 @@ public class BookController {
     public Book update(
             @Parameter(description = "ID of the book to be updated", example = "1")
             @PathVariable String id,
-            @RequestBody BookUpdateRequestDTO book) {
+            @Valid @RequestBody BookUpdateRequestDTO book) {
         return bookService.update(id, book);
     }
 }
