@@ -54,7 +54,7 @@ class ShoppingCartControllerTest {
     }
 
     @Test
-    void shouldSaveShoppingCart() throws Exception {
+    void shouldCreateAndUpdateShoppingCartUsingSave() throws Exception {
         String userId = "user1";
 
         mockMvc.perform(post("/users/{userId}/shopping-cart", userId)
