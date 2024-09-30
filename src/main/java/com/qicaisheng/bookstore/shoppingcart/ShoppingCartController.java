@@ -15,7 +15,7 @@ public class ShoppingCartController {
     private final ShoppingCartService shoppingCartService;
 
     @Operation(summary = "Create a new shopping cart for a user",
-            description = "Saves a shopping cart based on the provided user ID and shopping cart request data.")
+            description = "Saves a shopping cart based on the provided user ID and shopping cart request data. And return saved ShoppingCart which with total prices.")
     @PostMapping("/users/{userId}/shopping-cart")
     public ShoppingCart save(
             @Parameter(description = "The ID of the user for whom the shopping cart is being created")
